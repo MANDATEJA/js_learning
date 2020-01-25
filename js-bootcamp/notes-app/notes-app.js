@@ -9,22 +9,6 @@ const notes = [{
     body: 'Get a new seat'
 }]
 
-// DOM - Document Object Model
-
-// Query and remote
-// const p = document.querySelector('p')
-// p.remove()
-
-// Query all and remove
-const ps = document.querySelectorAll('p')
-
-ps.forEach(function (p) {
-    p.textContent = '****************'
-    // console.log(p.textContent)
-    // p.remove(0)
+document.querySelector('button').addEventListener('click', function (event) {
+    event.target.textContent = 'The button was clicked'
 })
-
-// Add a new element
-const newParagreaph = document.createElement('p')
-newParagreaph.textContent = 'This is a new element from JavaScript'
-document.querySelector('body').appendChild(newParagreaph)
