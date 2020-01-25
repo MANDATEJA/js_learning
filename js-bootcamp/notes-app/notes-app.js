@@ -18,14 +18,3 @@ document.querySelector('#remove-all').addEventListener('click', function (e) {
         note.remove()
     })
 })
-
-// -- single --
-// p
-// #replace
-// .item
-
-// -- multiple --
-// p#order
-// button.inventory
-// h1#title.application
-// h1.application#title
