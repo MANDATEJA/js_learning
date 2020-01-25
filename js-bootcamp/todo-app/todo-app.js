@@ -32,3 +32,7 @@ todos.forEach(function (todo) {
 document.querySelector('#add-todo').addEventListener('click', function (event) {
     console.log('Add a new todo')
 })
+
+document.querySelector('#new-todo').addEventListener('input', function (e) {
+    console.log(e.target.value)
+})
