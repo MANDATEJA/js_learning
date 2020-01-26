@@ -15,15 +15,15 @@ const todos = [{
     completed: false
 }]
 
-const incompleteTodos = todos.filter(function (todo) {
-    return !todo.completed
-})
-
 const filterTodo = {
     searchText: ''
 }
 
-const renderTodos = function (incompleteTodos, filterTodo) {
+const renderTodos = function (todos, filterTodo) {
+    const incompleteTodos = todos.filter(function (todo) {
+        return !todo.completed
+    })
+
     const renderTodos = incompleteTodos.filter(function (todo) {
         return todo.text.toLowerCase().includes(filterTodo.searchText.toLowerCase())
     })
@@ -41,15 +41,21 @@ const renderTodos = function (incompleteTodos, filterTodo) {
     })
 }
 
-document.querySelector('#add-todo').addEventListener('click', function (event) {
-    console.log('Add a new todo')
-})
-
-document.querySelector('#new-todo').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
+renderTodos(todos, filterTodo)
 
 document.querySelector('#search-todo').addEventListener('input', function (e) {
     filterTodo.searchText = e.target.value
-    renderTodos(incompleteTodos, filterTodo)
+    renderTodos(todos, filterTodo)
+})
+
+document.querySelector('#add-todo').addEventListener('submit', function (e) {
+    e.preventDefault()
+    console.log(e.target.elements.todoText.value)
+    todos.push({
+        text: e.target.elements.todoText.value,
+        completed: false
+    })
+    console.log(todos)
+    e.target.elements.todoText.vaule = ''
+    renderTodos(todos, filterTodo)
 })
