@@ -50,12 +50,10 @@ document.querySelector('#search-todo').addEventListener('input', function (e) {
 
 document.querySelector('#add-todo').addEventListener('submit', function (e) {
     e.preventDefault()
-    console.log(e.target.elements.todoText.value)
     todos.push({
         text: e.target.elements.todoText.value,
         completed: false
     })
-    console.log(todos)
-    e.target.elements.todoText.vaule = ''
     renderTodos(todos, filterTodo)
+    e.target.elements.todoText.value = ''
 })
