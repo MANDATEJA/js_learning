@@ -1,3 +1,4 @@
+// Return existing todo from locall storage
 const getSavedTodos = function () {
     const todosJSON = localStorage.getItem('todos')
 
@@ -8,10 +9,12 @@ const getSavedTodos = function () {
     }
 }
 
+// Save todos to local storage
 const saveTodos = function (todos) {
     localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// Render application todos based on filters
 const renderTodos = function (todos, filters) {
     const filteredTodos = todos.filter(function (todo) {
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -35,12 +38,14 @@ const renderTodos = function (todos, filters) {
     })
 }
 
+// Get DOM elements for an individual item
 const generateTodoDOM = function (todo) {
     const p = document.createElement('p')
     p.textContent = todo.text
     return p
 }
 
+// Get DOM element for list summary
 const generateSummaryDOM = function (incompleteTodos) {
     const summary = document.createElement('h2')
     summary.textContent = `You have ${incompleteTodos.length} todos left`
