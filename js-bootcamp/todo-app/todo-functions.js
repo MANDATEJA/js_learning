@@ -28,7 +28,6 @@ const renderTodos = function (todos, filters) {
     })
 
     document.querySelector('#todos').innerHTML = ''
-
     const summary = generateSummaryDOM(incompleteTodos)
     document.querySelector('#todos').appendChild(summary)
 
@@ -40,9 +39,24 @@ const renderTodos = function (todos, filters) {
 
 // Get DOM elements for an individual item
 const generateTodoDOM = function (todo) {
-    const p = document.createElement('p')
-    p.textContent = todo.text
-    return p
+    const todoEl = document.createElement('div')
+    const checkbox = document.createElement('input')
+    const todoText = document.createElement('span')
+    const button = document.createElement('button')
+
+    // Setup todo checkbox
+    checkbox.setAttribute('type', 'checkbox')
+    todoEl.appendChild(checkbox)
+    
+    // Setup todo text
+    todoText.textContent = todo.text
+    todoEl.appendChild(todoText)
+
+    // Setup the remove button
+    button.textContent = 'X'
+    todoEl.appendChild(button)
+
+    return todoEl
 }
 
 // Get DOM element for list summary
