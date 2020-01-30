@@ -33,3 +33,10 @@ window.addEventListener('storage', function (e) {
         renderNotes(notes, filters)
     }
 })
+
+const now = moment()
+console.log(now.toString())
+now.add(1, 'year').subtract(20, 'days')
+console.log(now.toString())
+// November 3rd, 2003
+
