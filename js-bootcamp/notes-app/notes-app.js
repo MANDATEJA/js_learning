@@ -35,8 +35,10 @@ window.addEventListener('storage', function (e) {
 })
 
 const now = moment()
-console.log(now.toString())
-now.add(1, 'year').subtract(20, 'days')
-console.log(now.toString())
+now.subtract(1, 'week').subtract(20, 'days')
 // November 3rd, 2003
+console.log(moment().format('MMMM Do, YYYY'))
+console.log(now.fromNow())
 
+const nowTimeStamp = now.valueOf()
+console.log(moment(nowTimeStamp).toString())
