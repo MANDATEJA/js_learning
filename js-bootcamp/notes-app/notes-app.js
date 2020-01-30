@@ -34,11 +34,15 @@ window.addEventListener('storage', function (e) {
     }
 })
 
-const now = moment()
-now.subtract(1, 'week').subtract(20, 'days')
-// November 3rd, 2003
-console.log(moment().format('MMMM Do, YYYY'))
-console.log(now.fromNow())
+// const now = moment()
+// now.subtract(1, 'week').subtract(20, 'days')
+// // November 3rd, 2003
+// console.log(moment().format('MMMM Do, YYYY'))
+// console.log(now.fromNow())
 
-const nowTimeStamp = now.valueOf()
-console.log(moment(nowTimeStamp).toString())
+// const nowTimeStamp = now.valueOf()
+// console.log(moment(nowTimeStamp).toString())
+
+const birthday = moment()
+birthday.year(1996).month(3).date(6)
+console.log(birthday.format('MMM D, YYYY'))
