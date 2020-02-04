@@ -4,3 +4,13 @@ const add = function (a, b) {
 }
 
 console.log(add(11,22,33,44))
+
+// this local variable is not accessible in arrow functions
+const car = {
+    color: 'red',
+    getSummary: () => {
+        return `The car is ${this.color}`
+    }
+}
+
+console.log(car.getSummary())
