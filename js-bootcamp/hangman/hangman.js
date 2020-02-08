@@ -10,12 +10,6 @@ Hangman.prototype.gameStatus = function () {
         return this.guessedLetters.includes(letter)
     })
 
-    // const lettersUnguessed = this.word.filter(letter => {
-    //     return !this.guessedLetters.includes(letter)
-    // })
-
-    // const finished = lettersUnguessed.length === 0
-
     if (!this.attempts) {
         this.status = 'failed'
     } else if (finished) {
