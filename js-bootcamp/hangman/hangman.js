@@ -9,7 +9,7 @@ Hangman.prototype.getGameStatus = function () {
     if (this.status === 'playing') {
         return `Playing -> Guesses left: ${this.attempts}`
     } else if(this.status === 'failed') {
-        return `Failed -> Nice try! The word was ${this.word.join('')}`
+        return `Failed -> Nice try! The word was "${this.word.join('')}"`
     } else  {
         return `Finished -> Great work! You guessed the word.`
     }
