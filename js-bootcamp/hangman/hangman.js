@@ -1,13 +1,29 @@
-const puzzleElement = document.querySelector('#puzzle')
-const attemptsElement = document.querySelector('#guesses')
+const Hangman = function (word, attempts) {
+    this.word = word.toLowerCase().split('')
+    this.attempts = attempts
+    this.guessedLetters = []
+}
 
-const game1 = new Hangman('cat', 2)
-puzzleElement.textContent = game1.getPuzzle()
-attemptsElement.textContent = game1.attempts
+Hangman.prototype.getPuzzle = function () {
+    let puzzle = ''
 
-window.addEventListener('keypress', function (e) {
-    const guess = String.fromCharCode(e.charCode)
-    game1.makeGuess(guess)
-    puzzleElement.textContent = game1.getPuzzle()
-    attemptsElement.textContent = game1.attempts
-})
+    this.word.forEach((letter) => {
+        if (this.guessedLetters.includes(letter) || letter === ' ') {
+            puzzle += letter
+        } else {
+            puzzle += '*'
+        }
+    })
+
+    return puzzle
+}
+
+Hangman.prototype.makeGuess = function (guess) {
+    guess = guess.toLowerCase()
+    if (!this.guessedLetters.includes(guess)) {
+        this.guessedLetters.push(guess)
+        if (!this.word.includes(guess)) {
+            this.attempts--
+        }
+    }
+}

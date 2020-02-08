@@ -1,38 +1,13 @@
-// Primitive value: string, number, boolean, null, undefined
+const puzzleElement = document.querySelector('#puzzle')
+const attemptsElement = document.querySelector('#guesses')
 
-// Object; myObject -> Object.prototype -> null
-// Array: myArray -> Array.prototype -> Object.prototype -> null
-// Function: myFunc -> Function.prototype -> Object.prototype -> null
-// String: myString -> String.prototype -> Object.prototype -> null
-// Number: myNumber -> Number.prototype -> Object.prototype -> null
-// Boolean: myBoolean -> Boolean.prototype -> Object.prototype -> null
+const game1 = new Hangman('cat', 2)
+puzzleElement.textContent = game1.getPuzzle()
+attemptsElement.textContent = game1.attempts
 
-const Hangman = function (word, attempts) {
-    this.word = word.toLowerCase().split('')
-    this.attempts = attempts
-    this.guessedLetters = []
-}
-
-Hangman.prototype.getPuzzle = function () {
-    let puzzle = ''
-
-    this.word.forEach((letter) => {
-        if (this.guessedLetters.includes(letter) || letter === ' ') {
-            puzzle += letter
-        } else {
-            puzzle += '*'
-        }
-    })
-
-    return puzzle
-}
-
-Hangman.prototype.makeGuess = function (guess) {
-    guess = guess.toLowerCase()
-    if (!this.guessedLetters.includes(guess)) {
-        this.guessedLetters.push(guess)
-        if (!this.word.includes(guess)) {
-            this.attempts--
-        }
-    }
-}
+window.addEventListener('keypress', function (e) {
+    const guess = String.fromCharCode(e.charCode)
+    game1.makeGuess(guess)
+    puzzleElement.textContent = game1.getPuzzle()
+    attemptsElement.textContent = game1.attempts
+})
