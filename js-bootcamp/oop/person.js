@@ -1,4 +1,5 @@
 // Prototypal Inheritance
+// myPerson -> Person.prototype -> Object.prototype -> null
 
 class Person {
     constructor(firstName, lastName, age, likes = []) {
@@ -23,9 +24,34 @@ class Person {
     }
 }
 
-const me = new Person('Teja', 'Reddy', 24, ['Reading', 'Watching TV'])
-me.setName('Hashton Carter')
-console.log(me.getBio())
+class Employee extends Person {
+    constructor(firstName, lastName, age, position, likes) {
+        super(firstName, lastName, age, likes)
+        this.position = position
+    }
+    getBio() {
+        return `${this.firstName} ${this.lastName} is a ${this.position}.`
+    }
+    getYearsLeft() {
+        return 65 - this.age
+    }
+}
 
-const person2 = new Person('Robert', 'Downey', 34)
-console.log(person2.getBio())
+class Student extends Person {
+    constructor(firstName, lastName, age, grade, likes) {
+        super(firstName, lastName, age, likes)
+        this.grade = grade
+    }
+    getBio() {
+        const status = this.grade >= 70 ? 'passing' : 'failing'
+        return `${this.firstName} is ${status} the class!`
+    }
+    upgradeGrade(change) {
+        this.grade += change
+    }
+}
+
+const studentOne = new Student('Bill', 'Berry', 17, 79, ['Swimming', 'Badminton'])
+console.log(studentOne.getBio())
+studentOne.upgradeGrade(-25)
+console.log(studentOne.getBio())
