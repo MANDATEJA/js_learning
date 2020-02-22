@@ -15,23 +15,13 @@ window.addEventListener('keypress', (e) => {
 getPuzzle('2').then((puzzle) => {
     console.log(puzzle)
 }).catch((err) => {
-    console.log(`Error: ${err}`)
+    console.log(err)
 })
 
-getCountry('US').then((country) => {
+getLocation().then((location) => {
+    return getCountry(location.country)
+}).then((country) => {
     console.log(`Country: ${country.name}`)
 }).catch((err) => {
-    console.log(`Error: ${err}`)
+    console.log(err)
 })
-
-// fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
-//     if (response.status === 200) {
-//         return response.json()
-//     } else {
-//         throw new Error('Unable to fetch the puzzle')
-//     }
-// }).then((data) => {
-//     console.log(data.puzzle)
-// }).catch((error) => {
-//     console.log(error)
-// })
