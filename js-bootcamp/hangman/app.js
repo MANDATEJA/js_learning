@@ -12,18 +12,14 @@ window.addEventListener('keypress', (e) => {
     gameStatusElement.textContent = game1.gameStatus
 })
 
-getPuzzle('2', (error, puzzle) => {
-    if (error) {
-        console.log(`Error: ${error}`)
-    } else {
-        console.log(puzzle)
-    }
-});
+getPuzzle('2').then((puzzle) => {
+    console.log(puzzle)
+}, (err) => {
+    console.log(`Error: ${err}`)
+})
 
-getCountry('US', (error, country) => {
-    if (error) {
-        console.log(`Error: ${error}`)
-    } else {
-        console.log(country)
-    }
+getCountry('US').then((country) => {
+    console.log(`Country: ${country}`)
+}, (err) => {
+    console.log(`Error: ${err}`)
 })
