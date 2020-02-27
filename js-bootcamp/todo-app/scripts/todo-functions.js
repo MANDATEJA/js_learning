@@ -26,6 +26,7 @@ const removeToDo = (id) => {
 
 // Render application todos based on filters
 const renderTodos = (todos, filters) => {
+    const todoEl = document.querySelector('#todos')
     const filteredTodos = todos.filter((todo) => {
         const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
@@ -35,20 +36,20 @@ const renderTodos = (todos, filters) => {
 
     const incompleteTodos = filteredTodos.filter((todo) => !todo.completed)
 
-    document.querySelector('#todos').innerHTML = ''
+    todoEl.innerHTML = ''
     const summary = generateSummaryDOM(incompleteTodos)
-    document.querySelector('#todos').appendChild(summary)
+    todoEl.appendChild(summary)
 
     if (filteredTodos.length > 0) {
         filteredTodos.forEach((todo) => {
             const p = generateTodoDOM(todo)
-            document.querySelector('#todos').appendChild(p)
+            todoEl.appendChild(p)
         })
     } else {
         const messageEl = document.createElement('p')
         messageEl.classList.add('empty-message')
         messageEl.textContent = 'No Todos to show'
-        document.querySelector('#todos').appendChild(messageEl)
+        todoEl.appendChild(messageEl)
     }
 }
 
