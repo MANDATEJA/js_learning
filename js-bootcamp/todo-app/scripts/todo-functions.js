@@ -39,15 +39,23 @@ const renderTodos = (todos, filters) => {
     const summary = generateSummaryDOM(incompleteTodos)
     document.querySelector('#todos').appendChild(summary)
 
-    filteredTodos.forEach((todo) => {
-        const p = generateTodoDOM(todo)
-        document.querySelector('#todos').appendChild(p)
-    })
+    if (filteredTodos.length > 0) {
+        filteredTodos.forEach((todo) => {
+            const p = generateTodoDOM(todo)
+            document.querySelector('#todos').appendChild(p)
+        })
+    } else {
+        const messageEl = document.createElement('p')
+        messageEl.classList.add('empty-message')
+        messageEl.textContent = 'No Todos to show'
+        document.querySelector('#todos').appendChild(messageEl)
+    }
 }
 
 // Get DOM elements for an individual item
 const generateTodoDOM = (todo) => {
-    const todoEl = document.createElement('div')
+    const todoEl = document.createElement('label')
+    const containerEl = document.createElement('dev')
     const checkbox = document.createElement('input')
     const todoText = document.createElement('span')
     const button = document.createElement('button')
@@ -55,7 +63,7 @@ const generateTodoDOM = (todo) => {
     // Setup todo checkbox
     checkbox.setAttribute('type', 'checkbox')
     checkbox.checked = todo.completed
-    todoEl.appendChild(checkbox)
+    containerEl.appendChild(checkbox)
     checkbox.addEventListener('change', (e) => {
         todo.completed = e.target.checked
         saveTodos(todos)
@@ -64,10 +72,16 @@ const generateTodoDOM = (todo) => {
     
     // Setup todo text
     todoText.textContent = todo.text
-    todoEl.appendChild(todoText)
+    containerEl.appendChild(todoText)
+
+    // Setup container
+    todoEl.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoEl.appendChild(containerEl)
 
     // Setup the remove button
-    button.textContent = 'X'
+    button.textContent = 'remove'
+    button.classList.add('button', 'button--text')
     todoEl.appendChild(button)
 
     button.addEventListener('click', () => {
@@ -82,6 +96,8 @@ const generateTodoDOM = (todo) => {
 // Get DOM element for list summary
 const generateSummaryDOM = (incompleteTodos) => {
     const summary = document.createElement('h2')
-    summary.textContent = `You have ${incompleteTodos.length} todos left`
+    const plural = incompleteTodos.length === 1 ? '' : 's'
+    summary.classList.add('list-title')
+    summary.textContent = `You have ${incompleteTodos.length} todo${plural} left`
     return summary
 }
