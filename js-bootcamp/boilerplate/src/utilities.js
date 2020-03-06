@@ -3,7 +3,7 @@
 // 2. Default export - we can only have atmost one default export
 
 const add = (a, b) => a + b
-const name = 'Teja'
+const name = 'Teja Reddy'
 
 const square = (x) => x * x
 
