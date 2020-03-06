@@ -1,11 +1,8 @@
-const name = 'Mike'
+import square, { add, name } from './utilities'
+import { scream } from './scream'
+
+console.log('index.js')
+console.log(add(3, 6))
 console.log(name)
-
-class Hangman {
-	mymethod() {
-    	return 'Testing'
-    }
-}
-
-const hangman = new Hangman()
-console.log(hangman.mymethod())
+console.log(scream('Hello World'))
+console.log(square(9))
