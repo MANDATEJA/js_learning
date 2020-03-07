@@ -1,10 +1,6 @@
-import uuidv4 from 'uuid/v4'
-import validator from 'validator'
 import Hangman from './hangman'
 import getPuzzle from './requests'
 
-console.log(uuidv4())
-console.log(validator.isEmail('teja@email'))
 
 const puzzleElement = document.querySelector('#puzzle')
 const gameStatusElement = document.querySelector('#game-status')
