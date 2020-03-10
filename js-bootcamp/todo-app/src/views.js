@@ -1,4 +1,4 @@
-import { getTodos } from './todos'
+import { getTodos, removeTodo, toggleTodo } from './todos'
 import { getFilters } from './filters'
 
 const renderTodos = () => {
@@ -41,8 +41,7 @@ const generateTodoDOM = (todo) => {
     containerEl.appendChild(checkbox)
     checkbox.addEventListener('change', () => {
         toggleTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     })
 
     // Setup the todo text
@@ -60,8 +59,7 @@ const generateTodoDOM = (todo) => {
     todoEl.appendChild(removeButton)
     removeButton.addEventListener('click', () => {
         removeTodo(todo.id)
-        saveTodos(todos)
-        renderTodos(todos, filters)
+        renderTodos()
     }) 
 
     return todoEl
