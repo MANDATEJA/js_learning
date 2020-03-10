@@ -1,14 +1,14 @@
 import uuidv4 from 'uuid/v4'
 
-let todos = loadTodos()
+let todos = []
 
 const loadTodos = () => {
     const todosJSON = localStorage.getItem('todos')
 
     try {
-        return todosJSON ? JSON.parse(todosJSON) : []
+        todos = todosJSON ? JSON.parse(todosJSON) : []
     } catch (e) {
-        return []
+        todos = []
     }
 }
 
@@ -44,6 +44,8 @@ const toggleTodo = (id) => {
     }
     saveTodos()
 }
+
+loadTodos()
 
 export { loadTodos, saveTodos, getTodos, createTodo, removeTodo, toggleTodo }
 
