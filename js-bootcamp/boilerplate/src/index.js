@@ -1,8 +1,18 @@
-import square, { add, name } from './utilities'
-import scream from './scream'
+// JS rest parameter
+// ...numbers is called rest parameters
+const calculateAverage = (grade, ...numbers) => {
+    let sum = 0
+    numbers.forEach((num) => sum += num)
+    const average = sum / numbers.length
+    return `The average ${grade} is ${average}`
+}
 
-console.log('index.js')
-console.log(add(3, 16))
-console.log(name)
-console.log(scream('Hello World'))
-console.log(square(9))
+console.log(calculateAverage('grade', 0, 100, 50, 70))
+
+const printTeam = (team, coach, ...players) => {
+    console.log(`Team: ${team}`)
+    console.log(`Coach: ${coach}`)
+    console.log(`Players: ${players.join(', ')}`)
+}
+
+printTeam('Liberty', 'Casey Penn', 'Marge', 'Aiden', 'Herbert', 'Sherry')
